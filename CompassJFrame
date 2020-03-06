@@ -1,0 +1,81 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
+public class CompassJFrame extends JFrame implements ActionListener{
+    
+    private JButton North;
+    private JButton East;
+    private JButton South;
+    private JButton West;
+    private JButton Centre;
+    
+    public CompassJFrame() {
+        super("Compass");
+        
+        setSize(500, 500);
+        setLocation(200, 100);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        getContentPane().setBackground(new Color(0xabcdef));
+        
+        createButton();
+        
+        setVisible(true);
+    }   
+    private void createButton()
+    {   
+        getContentPane().setLayout( new BorderLayout(10, 10));
+        North = new JButton("North");
+        North.addActionListener(this);
+        getContentPane().add(North, BorderLayout.NORTH);
+        getContentPane().setLocation(0, 0);
+        East = new JButton("East");
+        East.addActionListener(this);
+        getContentPane().add(East, BorderLayout.EAST);
+        South = new JButton("South");
+        South.addActionListener(this);
+        getContentPane().add(South, BorderLayout.SOUTH);
+        West = new JButton("West");
+        West.addActionListener(this);
+        getContentPane().add(West, BorderLayout.WEST);
+        Centre = new JButton("Centre");
+        Centre.addActionListener(this);
+        getContentPane().add(Centre, BorderLayout.CENTER);
+    }
+    
+    public void actionPerformed(ActionEvent e)
+    {
+        int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+
+        int width = this.getWidth();
+        int height = this.getHeight();
+        
+        if(e.getSource()==North)
+        {
+            setLocation((screenWidth-width)/2, 0);
+        }
+        if(e.getSource()==East)
+        {
+            setLocation(screenWidth-width, (screenHeight-height)/2);
+        }
+        if(e.getSource()==South)
+        {
+            setLocation((screenWidth-width)/2, screenHeight-height-30);
+        }
+        if(e.getSource()==West)
+        {
+            setLocation(0, (screenHeight-height)/2);
+        }
+        if(e.getSource()==Centre)
+        {
+            setLocation((screenWidth-width)/2, (screenHeight-height)/2);
+        }
+    }
+}
