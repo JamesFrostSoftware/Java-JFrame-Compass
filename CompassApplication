@@ -1,0 +1,5 @@
+public class CompassApplication {
+    public static void main(String[] args) {
+        CompassJFrame CJF = new CompassJFrame();
+    }
+}
